@@ -1,0 +1,29 @@
+{
+  "name": "testgen-thirteen-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/testgen-thirteen-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/testgen-thirteen-e2e/cypress.json",
+        "devServerTarget": "testgen-thirteen:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "testgen-thirteen:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/testgen-thirteen-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["testgen-thirteen"]
+}

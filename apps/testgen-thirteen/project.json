@@ -1,0 +1,95 @@
+{
+  "name": "testgen-thirteen",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/testgen-thirteen/src",
+  "prefix": "testgen-thirteen",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/testgen-thirteen",
+        "index": "apps/testgen-thirteen/src/index.html",
+        "main": "apps/testgen-thirteen/src/main.ts",
+        "polyfills": "apps/testgen-thirteen/src/polyfills.ts",
+        "tsConfig": "apps/testgen-thirteen/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/testgen-thirteen/src/favicon.ico",
+          "apps/testgen-thirteen/src/assets"
+        ],
+        "styles": ["apps/testgen-thirteen/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/testgen-thirteen/src/environments/environment.ts",
+              "with": "apps/testgen-thirteen/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "testgen-thirteen:build:production"
+        },
+        "development": {
+          "browserTarget": "testgen-thirteen:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "testgen-thirteen:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/testgen-thirteen/src/**/*.ts",
+          "apps/testgen-thirteen/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/testgen-thirteen"],
+      "options": {
+        "jestConfig": "apps/testgen-thirteen/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
