@@ -23,6 +23,9 @@
       ],
       "@testgen-thirteen/common/ui": [
         "libs/common/ui/src/index.ts"
+      ],
+      "@testgen-thirteen/home": [
+        "libs/home/src/index.ts"
       ]
     }
   },
